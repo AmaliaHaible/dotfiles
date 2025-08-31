@@ -7,7 +7,7 @@ local config = wezterm.config_builder()
 config.font = wezterm.font("JetBrainsMonoNL Nerd Font", { weight = "DemiBold", stretch = "Normal", style = "Normal" })
 
 config.default_prog = { "zsh" }
-config.default_cwd = "~/projects"
+config.default_cwd = "~/projects/"
 
 config.font_size = 10
 config.color_scheme = "nordfox"
