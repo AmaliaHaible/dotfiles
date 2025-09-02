@@ -2,8 +2,7 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local config = wezterm.config_builder()
 
---config.font = wezterm.font 'UbuntuMono Nerd Font'
---wezterm.font("UbuntuMono Nerd Font", {weight="Bold", stretch="Normal", style="Normal"})
+-- Note that this file starts with a dot bc i started on windows and was too lazy to change it
 config.font = wezterm.font("JetBrainsMonoNL Nerd Font", { weight = "DemiBold", stretch = "Normal", style = "Normal" })
 
 config.default_prog = { "zsh" }
@@ -30,6 +29,29 @@ config.window_padding = {
 	bottom = 0,
 }
 
+wezterm.on("decrease-transparency", function(window, pane)
+	local overrides = window:get_config_overrides() or {}
+	if not overrides.window_background_opacity then
+		overrides.window_background_opacity = 1.0
+	end
+	overrides.window_background_opacity = overrides.window_background_opacity - 0.05
+    if overrides.window_background_opacity <=0 then
+        overrides.window_background_opacity = 0
+    end
+	window:set_config_overrides(overrides)
+end)
+
+wezterm.on("increase-transparency", function(window, pane)
+	local overrides = window:get_config_overrides() or {}
+	if not overrides.window_background_opacity then
+		overrides.window_background_opacity = 1.0
+	end
+	overrides.window_background_opacity = overrides.window_background_opacity + 0.05
+    if overrides.window_background_opacity >= 1 then
+        overrides.window_background_opacity = 1
+    end
+	window:set_config_overrides(overrides)
+end)
 config.disable_default_key_bindings = true
 
 -- qwerty layout is default, so i need to change a lot
@@ -90,6 +112,10 @@ config.keys = {
 	{ key = "H", mods = "SHIFT|ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "ALT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "h", mods = "ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+
+    -- Transparency
+	{ key = "+", mods = "ALT|CTRL", action = act.EmitEvent "increase-transparency" },
+	{ key = "-", mods = "ALT|CTRL", action = act.EmitEvent "decrease-transparency" },
 }
 
 wezterm.plugin.require("https://github.com/yriveiro/wezterm-tabs").apply_to_config(config, { tabs = { tab_bar_at_bottom = false } })

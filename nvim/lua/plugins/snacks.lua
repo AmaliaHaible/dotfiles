@@ -8,6 +8,7 @@ return {
         },
         image = {},
         indent = {},
+        input = {},
         lazygit = {},
         notifier = {},
         picker = {
