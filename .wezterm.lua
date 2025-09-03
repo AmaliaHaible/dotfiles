@@ -13,13 +13,22 @@ config.color_scheme = "nordfox"
 config.colors = { background = "282c34" }
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-	config.default_prog = { "powershell" }
+	config.default_prog = { "pwsh.exe", "-NoLogo" }
 	config.default_cwd = "C:/Users/Florian/projects/"
 
 	config.launch_menu = {
 		{ label = "MSYS MINGW64", args = { "cmd.exe ", "/k", "C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -mingw64 -shell bash" } },
 		{ label = "MSYS UCRT64", args = { "cmd.exe ", "/k", "C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -ucrt64 -shell bash" } },
+        { label = "PowerShell (Old)", args = {"powershell.exe", "-NoLogo"} },
+        { label = "PowerShell (New)", args = {"pwsh.exe", "-NoLogo"} },
 	}
+	for _, vsvers in ipairs(wezterm.glob("Microsoft Visual Studio/20*", "C:/Program Files (x86)")) do
+		local year = vsvers:gsub("Microsoft Visual Studio/", "")
+		table.insert(config.launch_menu, {
+			label = "x64 Native Tools VS " .. year,
+			args = { "cmd.exe", "/k", "C:/Program Files (x86)/" .. vsvers .. "/BuildTools/VC/Auxiliary/Build/vcvars64.bat" },
+		})
+	end
 end
 
 config.window_padding = {
@@ -35,9 +44,9 @@ wezterm.on("decrease-transparency", function(window, pane)
 		overrides.window_background_opacity = 1.0
 	end
 	overrides.window_background_opacity = overrides.window_background_opacity - 0.05
-    if overrides.window_background_opacity <=0 then
-        overrides.window_background_opacity = 0
-    end
+	if overrides.window_background_opacity <= 0 then
+		overrides.window_background_opacity = 0
+	end
 	window:set_config_overrides(overrides)
 end)
 
@@ -47,9 +56,9 @@ wezterm.on("increase-transparency", function(window, pane)
 		overrides.window_background_opacity = 1.0
 	end
 	overrides.window_background_opacity = overrides.window_background_opacity + 0.05
-    if overrides.window_background_opacity >= 1 then
-        overrides.window_background_opacity = 1
-    end
+	if overrides.window_background_opacity >= 1 then
+		overrides.window_background_opacity = 1
+	end
 	window:set_config_overrides(overrides)
 end)
 config.disable_default_key_bindings = true
@@ -113,9 +122,9 @@ config.keys = {
 	{ key = "v", mods = "ALT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "h", mods = "ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 
-    -- Transparency
-	{ key = "+", mods = "ALT|CTRL", action = act.EmitEvent "increase-transparency" },
-	{ key = "-", mods = "ALT|CTRL", action = act.EmitEvent "decrease-transparency" },
+	-- Transparency
+	{ key = "+", mods = "ALT|CTRL", action = act.EmitEvent("increase-transparency") },
+	{ key = "-", mods = "ALT|CTRL", action = act.EmitEvent("decrease-transparency") },
 }
 
 wezterm.plugin.require("https://github.com/yriveiro/wezterm-tabs").apply_to_config(config, { tabs = { tab_bar_at_bottom = false } })
