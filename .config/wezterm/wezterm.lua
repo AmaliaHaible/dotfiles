@@ -115,6 +115,10 @@ config.keys = {
 	{ key = ",", mods = "ALT|CTRL", action = act.RotatePanes("CounterClockwise") },
 	{ key = ".", mods = "ALT|CTRL", action = act.RotatePanes("Clockwise") },
 	{ key = "z", mods = "ALT|CTRL", action = act.TogglePaneZoomState },
+	{ key = "a", mods = "ALT|CTRL", action = act.PaneSelect({mode = "Activate"}) },
+	{ key = "s", mods = "ALT|CTRL", action = act.PaneSelect({mode = "SwapWithActive"}) },
+	{ key = "s", mods = "SHIFT|ALT|CTRL", action = act.PaneSelect({mode = "SwapWithActiveKeepFocus"}) },
+	{ key = "d", mods = "ALT|CTRL", action = act.PaneSelect({mode = "MoveToNewTab"}) },
 
 	-- Opposite to vim splits
 	{ key = "V", mods = "SHIFT|ALT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
