@@ -19,16 +19,26 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.launch_menu = {
 		{ label = "MSYS MINGW64", args = { "cmd.exe ", "/k", "C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -mingw64 -shell bash" } },
 		{ label = "MSYS UCRT64", args = { "cmd.exe ", "/k", "C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -ucrt64 -shell bash" } },
-        { label = "PowerShell (Old)", args = {"powershell.exe", "-NoLogo"} },
-        { label = "PowerShell (New)", args = {"pwsh.exe", "-NoLogo"} },
+		{ label = "PowerShell (Old)", args = { "powershell.exe", "-NoLogo" } },
+		{ label = "PowerShell (New)", args = { "pwsh.exe", "-NoLogo" } },
+		{
+			label = "VC 2022 PowerShell",
+			args = {
+				"pwsh.exe",
+				"-NoExit",
+				"-Command",
+				'&{Import-Module "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell 4bbb64cc -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64"}',
+			},
+		},
 	}
-	for _, vsvers in ipairs(wezterm.glob("Microsoft Visual Studio/20*", "C:/Program Files (x86)")) do
-		local year = vsvers:gsub("Microsoft Visual Studio/", "")
-		table.insert(config.launch_menu, {
-			label = "x64 Native Tools VS " .. year,
-			args = { "cmd.exe", "/k", "C:/Program Files (x86)/" .. vsvers .. "/BuildTools/VC/Auxiliary/Build/vcvars64.bat" },
-		})
-	end
+	-- for cmd: see https://wezterm.org/config/launch.html#the-launcher-menu
+    -- I hate everything about this. if someone reads this, just create this function in your $PROFILE 
+    -- function vs22 {
+    --     Import-Module "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; 
+    --     Enter-VsDevShell 4bbb64cc -SkipAutomaticLocation -Arch amd64 -HostArch amd64
+    --     # Enter-VsDevShell -VsInstallPath "C:\Program Files\Microsoft Visual Studio\2022\Community\" -SkipAutomaticLocation -Arch amd64 -HostArch amd64
+    -- }
+
 end
 
 config.window_padding = {
@@ -115,10 +125,10 @@ config.keys = {
 	{ key = ",", mods = "ALT|CTRL", action = act.RotatePanes("CounterClockwise") },
 	{ key = ".", mods = "ALT|CTRL", action = act.RotatePanes("Clockwise") },
 	{ key = "z", mods = "ALT|CTRL", action = act.TogglePaneZoomState },
-	{ key = "a", mods = "ALT|CTRL", action = act.PaneSelect({mode = "Activate"}) },
-	{ key = "s", mods = "ALT|CTRL", action = act.PaneSelect({mode = "SwapWithActive"}) },
-	{ key = "s", mods = "SHIFT|ALT|CTRL", action = act.PaneSelect({mode = "SwapWithActiveKeepFocus"}) },
-	{ key = "d", mods = "ALT|CTRL", action = act.PaneSelect({mode = "MoveToNewTab"}) },
+	{ key = "a", mods = "ALT|CTRL", action = act.PaneSelect({ mode = "Activate" }) },
+	{ key = "s", mods = "ALT|CTRL", action = act.PaneSelect({ mode = "SwapWithActive" }) },
+	{ key = "s", mods = "SHIFT|ALT|CTRL", action = act.PaneSelect({ mode = "SwapWithActiveKeepFocus" }) },
+	{ key = "d", mods = "ALT|CTRL", action = act.PaneSelect({ mode = "MoveToNewTab" }) },
 
 	-- Opposite to vim splits
 	{ key = "V", mods = "SHIFT|ALT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
