@@ -13,7 +13,7 @@ config.color_scheme = "nordfox"
 config.colors = { background = "282c34" }
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-	config.default_prog = { "pwsh.exe", "-NoLogo" }
+	config.default_prog = { "pwsh.exe" } --, "-NoLogo" }
 	config.default_cwd = "C:/Users/Florian/projects/"
 
 	config.launch_menu = {
