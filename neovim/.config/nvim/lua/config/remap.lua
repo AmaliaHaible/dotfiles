@@ -76,7 +76,7 @@ vim.keymap.set({ "t", "n" }, "<A-p>", function()
 	if vim.fn.has("Linux") == 1 then
 		term.toggle("zsh", { win = { width = 0.9, height = 0.9, minimal = false } })
 	elseif vim.fn.has("Windows") == 1 then
-		term.toggle("powershell", { win = { width = 0.9, height = 0.9, minimal = false, border = "rounded" } })
+		term.toggle("pwsh", { win = { width = 0.9, height = 0.9, minimal = false, border = "rounded" } })
 	end
 end, { desc = "Open floating Powershell/Zsh" })
 

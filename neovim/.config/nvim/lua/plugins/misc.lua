@@ -12,9 +12,9 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 	},
-	{
-		"lewis6991/gitsigns.nvim",
-	},
+	-- {
+	-- 	"lewis6991/gitsigns.nvim",
+	-- },
 	-- {
 	-- 	"j-hui/fidget.nvim",
 	-- 	opts = {
@@ -36,11 +36,11 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 	},
-	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
-		opts = {},
-	},
+	-- { -- Why does this start so slowly
+	-- 	"MeanderingProgrammer/render-markdown.nvim",
+	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
+	-- 	opts = {},
+	-- },
 	-- { -- Why? idk
 	-- 	"nvim-telescope/telescope.nvim",
 	-- 	tag = "0.1.8",
