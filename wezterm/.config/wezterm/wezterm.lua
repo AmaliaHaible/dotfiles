@@ -87,10 +87,10 @@ config.keys = {
 	{ key = "'", mods = "SHIFT|CTRL", action = act.ResetFontSize },
 	{ key = "*", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
 	{ key = "_", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
+    { key = "A", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
+    { key = "B", mods = "SHIFT|CTRL", action = act.ClearScrollback("ScrollbackOnly") },
 	{ key = "C", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
 	{ key = "F", mods = "SHIFT|CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
-	{ key = "K", mods = "SHIFT|CTRL", action = act.ClearScrollback("ScrollbackOnly") },
-	{ key = "L", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
 	{ key = "M", mods = "SHIFT|CTRL", action = act.Hide },
 	{ key = "N", mods = "SHIFT|CTRL", action = act.SpawnWindow },
 	{ key = "P", mods = "SHIFT|CTRL", action = act.ActivateCommandPalette },
@@ -111,6 +111,10 @@ config.keys = {
 	{ key = "RightArrow", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(1) },
 	{ key = "UpArrow", mods = "SHIFT|CTRL", action = act.ScrollByLine(-1) },
 	{ key = "DownArrow", mods = "SHIFT|CTRL", action = act.ScrollByLine(1) },
+	{ key = "H", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
+	{ key = "L", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(1) },
+	{ key = "K", mods = "SHIFT|CTRL", action = act.ScrollByLine(-1) },
+	{ key = "J", mods = "SHIFT|CTRL", action = act.ScrollByLine(1) },
 
 	--Panes, with alt
 	{ key = "LeftArrow", mods = "ALT|CTRL", action = act.ActivatePaneDirection("Left") },
