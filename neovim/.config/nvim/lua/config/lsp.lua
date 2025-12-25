@@ -15,7 +15,7 @@ vim.lsp.enable({
 	"clangd", -- DO NOT INSTALL VIA MASON ON WINDOWS
     "glsl_analyzer",
     "autotools_ls",
-	"basedpyright",
+	-- "basedpyright",
 	-- "ocamllsp",
 	"gopls",
     "ts_ls",

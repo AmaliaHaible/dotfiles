@@ -24,7 +24,7 @@ return {
 	{
 		"chomosuke/typst-preview.nvim",
 		-- lazy = false, -- or ft = 'typst'
-        ft = "typst",
+		ft = "typst",
 		version = "1.*",
 		opts = {}, -- lazy.nvim will implicitly calls `setup {}`
 	},
@@ -36,6 +36,14 @@ return {
 			{ "mason-org/mason.nvim", opts = {} },
 			"neovim/nvim-lspconfig",
 		},
+	},
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+		lazy = false,
 	},
 	-- { -- Why does this start so slowly
 	-- 	"MeanderingProgrammer/render-markdown.nvim",

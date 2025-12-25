@@ -32,13 +32,14 @@ vim.keymap.set("n", "<leader>Y", function()
 	local path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", path)
 	print("file:", path)
-end, {desc = "Copy Filepath to Clipboard"})
+end, { desc = "Copy Filepath to Clipboard" })
 
 -- yank to / paste from system clipboard, delete to void
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set({ "n", "v" }, "<leader>D", '"_d')
 vim.keymap.set("n", "<leader>p", '"+p')
 
+vim.keymap.set("n", "<leader>fo", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- LSP Related
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -59,10 +60,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"c", "cpp"},
-    callback = function ()
-        vim.keymap.set("n", "<leader>lc", ":LspClangdSwitchSourceHeader<cr>")
-    end
+	pattern = { "c", "cpp" },
+	callback = function()
+		vim.keymap.set("n", "<leader>lc", ":LspClangdSwitchSourceHeader<cr>")
+	end,
 })
 
 -- vim.api.nvim_create_user_command("LspRestart", function()
