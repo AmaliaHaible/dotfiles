@@ -22,6 +22,8 @@ vim.lsp.enable({
     "html",
     "json",
     "tinymist",
+    "ty",
+    "qmlls",
 })
 
 vim.lsp.config("lua_ls", {

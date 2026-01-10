@@ -75,7 +75,8 @@ config.disable_default_key_bindings = true
 
 -- qwerty layout is default, so i need to change a lot
 config.keys = {
-	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
+    { key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1)},
+    {key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b\r"}},
 	{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
 	{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
 	{ key = "!", mods = "SHIFT|CTRL", action = act.ActivateTab(0) },
