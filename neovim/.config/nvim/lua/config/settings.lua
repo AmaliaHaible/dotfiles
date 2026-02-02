@@ -33,7 +33,7 @@ vim.opt.splitright = true                          -- Vertical splits go right
 if vim.fn.has("Linux") == 1 then
     vim.o.shell = "zsh"
 elseif vim.fn.has("Windows") == 1 then
-    vim.o.shell='"C:/Program Files/PowerShell/7/pwsh.exe"'
-    vim.o.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command"
+    -- vim.o.shell='"C:/Program Files/PowerShell/7/pwsh.exe"'
+    -- vim.o.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command"
 end
 
