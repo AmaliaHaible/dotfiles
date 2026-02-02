@@ -1,6 +1,10 @@
 return {
 	"saghen/blink.cmp",
 	version = "1.*",
+	dependencies = {
+		"Kaiser-Yang/blink-cmp-avante",
+		-- ... Other dependencies
+	},
 	opts = {
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 		-- 'super-tab' for mappings similar to vscode (tab to accept)
@@ -16,8 +20,8 @@ return {
 		-- See :h blink-cmp-config-keymap for defining your own keymap
 		keymap = {
 			preset = "default",
-            -- ["C-space"] = false,
-            -- ["C-s"] = {"show", "show_documentation", "hide_documentation"},
+			-- ["C-space"] = false,
+			-- ["C-s"] = {"show", "show_documentation", "hide_documentation"},
 
 			-- ["C-enter"] = { "select_and_accept", "fallback" },
 		},
@@ -35,12 +39,21 @@ return {
 		},
 		signature = { enabled = true },
 
-        snippets = { preset = 'mini_snippets' },
+		snippets = { preset = "mini_snippets" },
 
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "omni" },
+			default = { "avante", "lsp", "path", "snippets", "buffer", "omni"},
+            providers = {
+                avante = {
+                    module = 'blink-cmp-avante',
+                    name = 'Avante',
+                    opts = {
+                        -- options for blink-cmp-avante
+                    }
+                }
+            },
 		},
 
 		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance

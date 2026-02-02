@@ -50,20 +50,34 @@ return {
 		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 		lazy = false,
 	},
-	-- { -- Why does this start so slowly
-	-- 	"MeanderingProgrammer/render-markdown.nvim",
-	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
-	-- 	opts = {},
-	-- },
-	-- { -- Why? idk
-	-- 	"nvim-telescope/telescope.nvim",
-	-- 	tag = "0.1.8",
-	-- 	dependencies = { "nvim-lua/plenary.nvim" },
-	-- },
-	-- {
-	-- 	"nvim-neorg/neorg",
-	-- 	lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-	-- 	version = "*", -- Pin Neorg to the latest stable release
-	-- 	config = true,
-	-- },
+	{
+		"bassamsdata/namu.nvim",
+		opts = {
+			global = {},
+			namu_symbols = { -- Specific Module options
+				options = {
+					display = {
+						format = "tree_guides",
+					},
+				},
+			},
+		},
+		-- === Suggested Keymaps: ===
+		vim.keymap.set("n", "<leader>lt", ":Namu symbols<cr>", {
+			desc = "Namu Symbols",
+			silent = true,
+		}),
+		vim.keymap.set("n", "<leader>la", ":Namu workspace<cr>", {
+			desc = "Namu Workspace",
+			silent = true,
+		}),
+		vim.keymap.set("n", "<leader>lb", ":Namu watchtower<cr>", {
+			desc = "Namu Watchtower",
+			silent = true,
+		}),
+		vim.keymap.set("n", "<leader>le", ":Namu diagnostics<cr>", {
+			desc = "Namu Diagnostics",
+			silent = true,
+		}),
+	},
 }

@@ -22,8 +22,8 @@ return {
     },
     keys = {
         -- { "<leader>fa", function() Snacks.picker.autocmds() end,                                desc = "Autocmds" },
-        { "<leader>fb", function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
-        { "<leader>fB", function() Snacks.picker.lines() end,                                   desc = "Buffer Lines" },
+        { "<leader>fB", function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
+        { "<leader>fb", function() Snacks.picker.lines() end,                                   desc = "Buffer Lines" },
         { "<leader>fc", function() Snacks.picker.command_history() end,                         desc = "Command History" },
         { "<leader>fC", function() Snacks.picker.commands() end,                                desc = "Commands" },
         -- { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -78,7 +78,7 @@ return {
         { "<leader>lD", function() Snacks.picker.lsp_declarations() end,                        desc = "Goto Declaration" },
         { "<leader>lr", function() Snacks.picker.lsp_references() end,                          nowait = true,                     desc = "References" },
         { "<leader>li", function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
-        { "<leader>lt", function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto Type Definition" },
+        { "<leader>ly", function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto Type Definition" },
         { "<leader>lC", function() Snacks.picker.lsp_config() end,                              desc = "LSP Configs" },
 
 
