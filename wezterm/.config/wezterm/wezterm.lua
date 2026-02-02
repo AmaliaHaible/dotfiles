@@ -30,15 +30,23 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 				'&{Import-Module "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell 4bbb64cc -SkipAutomaticLocation -DevCmdArguments "-arch=x64 -host_arch=x64"}',
 			},
 		},
+		{
+			label = "VC22 neu",
+			args = {
+				"pwsh",
+				"-NoExit",
+				"-File",
+				"C:/Users/Florian/shell.ps1",
+			},
+		},
 	}
 	-- for cmd: see https://wezterm.org/config/launch.html#the-launcher-menu
-    -- I hate everything about this. if someone reads this, just create this function in your $PROFILE 
-    -- function vs22 {
-    --     Import-Module "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"; 
-    --     Enter-VsDevShell 4bbb64cc -SkipAutomaticLocation -Arch amd64 -HostArch amd64
-    --     # Enter-VsDevShell -VsInstallPath "C:\Program Files\Microsoft Visual Studio\2022\Community\" -SkipAutomaticLocation -Arch amd64 -HostArch amd64
-    -- }
-
+	-- I hate everything about this. if someone reads this, just create this function in your $PROFILE
+	-- function vs22 {
+	--     Import-Module "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/Microsoft.VisualStudio.DevShell.dll";
+	--     Enter-VsDevShell 4bbb64cc -SkipAutomaticLocation -Arch amd64 -HostArch amd64
+	--     # Enter-VsDevShell -VsInstallPath "C:\Program Files\Microsoft Visual Studio\2022\Community\" -SkipAutomaticLocation -Arch amd64 -HostArch amd64
+	-- }
 end
 
 config.window_padding = {
@@ -75,8 +83,8 @@ config.disable_default_key_bindings = true
 
 -- qwerty layout is default, so i need to change a lot
 config.keys = {
-    { key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1)},
-    {key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b\r"}},
+	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
+	-- { key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
 	{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
 	{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
 	{ key = "!", mods = "SHIFT|CTRL", action = act.ActivateTab(0) },
@@ -88,8 +96,8 @@ config.keys = {
 	{ key = "'", mods = "SHIFT|CTRL", action = act.ResetFontSize },
 	{ key = "*", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
 	{ key = "_", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
-    { key = "A", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
-    { key = "B", mods = "SHIFT|CTRL", action = act.ClearScrollback("ScrollbackOnly") },
+	{ key = "A", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
+	{ key = "B", mods = "SHIFT|CTRL", action = act.ClearScrollback("ScrollbackOnly") },
 	{ key = "C", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
 	{ key = "F", mods = "SHIFT|CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
 	{ key = "M", mods = "SHIFT|CTRL", action = act.Hide },
@@ -147,5 +155,16 @@ config.keys = {
 }
 
 wezterm.plugin.require("https://github.com/yriveiro/wezterm-tabs").apply_to_config(config, { tabs = { tab_bar_at_bottom = false } })
+-- wezterm.on('format-tab-title', function(tab)
+--   return {
+--     { Text = 'PowerShell' },
+--   }
+-- end)
+--
+-- -- Optional: also force the window title
+-- wezterm.on('format-window-title', function()
+--   return 'WezTerm'
+-- end)
+-- config.exit_behavior = "Hold"
 
 return config

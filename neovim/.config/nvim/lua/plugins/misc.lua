@@ -3,6 +3,11 @@ return {
 		"tpope/vim-fugitive",
 	},
 	{
+		"esmuellert/codediff.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		cmd = "CodeDiff",
+	},
+	{
 		"mbbill/undotree",
 	},
 	{
