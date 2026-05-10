@@ -4,7 +4,6 @@ return {
 	},
 	{
 		"esmuellert/codediff.nvim",
-		dependencies = { "MunifTanjim/nui.nvim" },
 		cmd = "CodeDiff",
 	},
 	{
@@ -80,4 +79,5 @@ return {
 			silent = true,
 		}),
 	},
+	{ "rluba/jai.vim" },
 }

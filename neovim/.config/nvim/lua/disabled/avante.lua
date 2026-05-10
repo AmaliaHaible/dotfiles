@@ -15,13 +15,32 @@ return {
 		provider = "claude",
 		providers = {
 			claude = {
-				-- endpoint = "https://api.anthropic.com",
-				-- model = "claude-sonnet-4-20250514",
-                auth_type = "max",
+				endpoint = "https://api.anthropic.com",
+				model = "claude-opus-4-5-20251101",
+				auth_type = "max",
 				timeout = 30000, -- Timeout in milliseconds
 				extra_request_body = {
 					temperature = 0.75,
 					max_tokens = 20480,
+				},
+			},
+		},
+		acp_providers = {
+			["claude-code"] = {
+				command = "npx",
+				args = { "@zed-industries/claude-code-acp" },
+				env = {
+					NODE_NO_WARNINGS = "1",
+					ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY"),
+                    CLAUDE_CODE_OAUTH_TOKEN = os.getenv('CLAUDE_CODE_OAUTH_TOKEN'),
+				},
+			},
+			["codex"] = {
+				command = "npx",
+				args = { "@zed-industries/codex-acp" },
+				env = {
+					NODE_NO_WARNINGS = "1",
+					OPENAI_API_KEY = os.getenv("OPENAI_API_KEY"),
 				},
 			},
 		},
@@ -54,7 +73,7 @@ return {
 			opts = {
 				-- recommended settings
 				default = {
-                    verbose = false,
+					verbose = false,
 					embed_image_as_base64 = false,
 					prompt_for_file_name = false,
 					drag_and_drop = {
