@@ -13,32 +13,33 @@ return {
 	lazy = false,
 	keys = {
 		{
-			"<leader>FF",
+			"ff",
 			function()
 				require("fff").find_files()
 			end,
-			desc = "FFF Finder",
+			desc = "FFFind files",
 		},
 		{
-			"<leader>FG",
-			function()
-				require("fff").find_files()
-			end,
-			desc = "FFF Git",
-		},
-		{
-			"<leader>FL",
+			"fl",
 			function()
 				require("fff").live_grep()
 			end,
-			desc = "FFF Grep",
+			desc = "LiFFFe grep",
 		},
 		{
-			"<leader>FK",
+			"fL",
 			function()
-				require("fff").live_grep({ grep = { modes = { 'fuzzy', 'plain' } } })
+				require("fff").live_grep({ grep = { modes = { "fuzzy", "plain" } } })
 			end,
-			desc = "FFF Grep",
+			desc = "Live fffuzy grep",
 		},
+		-- {
+		-- 	"fw",
+		-- 	function()
+		-- 		require("fff").live_grep_under_cursor()
+		-- 	end,
+		-- 	mode = { "n", "x" },
+		-- 	desc = "Search current word / selection",
+		-- },
 	},
 }
